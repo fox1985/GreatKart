@@ -1,0 +1,14 @@
+Django - делаем дамп базы данных и восстанавливаем из него с dumpdata и loaddata
+создаем фалй
+
+python manage.py dumpdata > db.json
+
+Востановление
+python manage.py  loaddata db.json
+-----------------------------------------
+
+создает файл раширениями
+pip freeze > readme.txt
+
+устововить библеотеки
+pip install -r  имя файла
