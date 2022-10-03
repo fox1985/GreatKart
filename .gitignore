@@ -2,3 +2,4 @@ env/
 .idea/
 media/
 db.sqlite3
+0001_initial.py
