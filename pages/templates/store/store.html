@@ -159,7 +159,7 @@
 					</div> <!-- price-wrap.// -->
 				</div>
 
-				<a href="{% url 'add_cart' product.id %}" class="btn btn-block btn-success">Добавить карзину</a>
+				<a href="{{ product.get_url }}" class="btn btn-block btn-success">Страница товара</a>
 			</figcaption>
 		</figure>
 	</div> <!-- col.// -->
