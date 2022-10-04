@@ -24,7 +24,7 @@ def store(request, category_slug=None):
         paged_products = paginator.get_page(page)
         product_cout = products.count()
     else:
-        products = Product.objects.filter(is_available=True)
+        products = Product.objects.filter(is_available=True).order_by('id')
         #количесто продуктов на одной страници
         paginator = Paginator(products, 6)
         page = request.GET.get('page')
