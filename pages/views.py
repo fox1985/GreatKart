@@ -1,10 +1,9 @@
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
-
 from carts.models import CartItem
 from carts.views import _cart_id
 from  pages.models import Category, Product
-# Create your views here.
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
 def home(reguest):
     products = Product.objects.all().filter(is_available=True)
@@ -19,13 +18,21 @@ def store(request, category_slug=None):
     if category_slug != None:
         category = get_object_or_404(Category, slug=category_slug)
         products = products.order_by('created_date').filter(category=category, is_available=True)
+        # количесто продуктов на одной страници
+        paginator = Paginator(products, 6)
+        page = request.GET.get('page')
+        paged_products = paginator.get_page(page)
         product_cout = products.count()
     else:
         products = Product.objects.filter(is_available=True)
+        #количесто продуктов на одной страници
+        paginator = Paginator(products, 6)
+        page = request.GET.get('page')
+        paged_products = paginator.get_page(page)
         product_cout = products.count()
 
     context = {
-        'products': products,
+        'products': paged_products,
         'product_cout': product_cout,
         'category': category,
         'categories':categoris,
