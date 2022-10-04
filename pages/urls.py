@@ -14,10 +14,13 @@ urlpatterns = [
     path('store/', views.store, name='store'),
 
     #выбор катигории
-    path('store/<slug:category_slug>/', views.store, name='category'),
+    path('store/category/<slug:category_slug>/', views.store, name='category'),
 
     # страница товара
-    path('store/<slug:category_slug>/<slug:product_slug>/', views.product_detail, name='product_detail'),
+    path('store/category/<slug:category_slug>/<slug:product_slug>/', views.product_detail, name='product_detail'),
+
+    #поиск
+    path('store/search/', views.search, name='search'),
 
 
 
