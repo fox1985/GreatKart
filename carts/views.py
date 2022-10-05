@@ -30,6 +30,11 @@ def _cart_id(request):
 
 
 def add_cart(reguest, product_id):
+    color = reguest.GET['color']
+    size = reguest.GET['size']
+    return HttpResponse(color + '' + size)
+    exit()
+
     product = Product.objects.get(id=product_id)
     try:
         cart = Cart.objects.get(cart_id=_cart_id(reguest))
