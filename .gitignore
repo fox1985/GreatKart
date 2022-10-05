@@ -3,3 +3,6 @@ env/
 media/
 db.sqlite3
 0001_initial.py
+0002_category_is_available.py
+0003_remove_category_is_available.py
+0004_variation.py
