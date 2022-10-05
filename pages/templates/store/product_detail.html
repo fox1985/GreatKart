@@ -24,7 +24,8 @@
         <main class="col-md-6 border-left">
 
 
-            <form action="{% url 'add_cart' single_product.id %}" method="GET">
+            <form action="{% url 'add_cart' single_product.id %}" method="POST">
+            {% csrf_token %}
             <article class="content-body">
 
 
@@ -43,10 +44,13 @@
             <div class="item-option-select">
                 <h6>Цвет</h6>
 
-               <select name="color" class="form-control">
-                   <option value="Красный">Красный</option>
-                   <option value="Жолтый">Жолтый</option>
-                   <option value="Зеленый">Зеленый</option>
+               <select name="color" class="form-control" required>
+                   <option value="" disabled selected>Выбор</option>
+               {% for i in single_product.variation_set.colors %}
+                   <option value="{{ i.variation_value | lower }}">{{ i.variation_value | capfirst }}</option>
+               {% endfor %}
+
+
                </select>
             </div><!-- item-option-select // -->
 
@@ -58,9 +62,10 @@
                 <h6>размера</h6>
 
                  <select name="size" class="form-control">
-                   <option value="xl">xl</option>
-                   <option value="xxl">xxl</option>
-                   <option value="l">l</option>
+                      <option value="" disabled selected>Выбор</option>
+                       {% for i in single_product.variation_set.sizes %}
+                           <option value="{{ i.variation_value | lower }}">{{ i.variation_value | capfirst }}</option>
+                       {% endfor %}
                </select>
                 </div><!-- item-option-select // -->
 

@@ -30,10 +30,10 @@ def _cart_id(request):
 
 
 def add_cart(reguest, product_id):
-    color = reguest.GET['color']
-    size = reguest.GET['size']
-    return HttpResponse(color + '' + size)
-    exit()
+    if reguest.method == 'POST':
+        color = reguest.POST['color']
+        size = reguest.POST['size']
+        print(color, size)
 
     product = Product.objects.get(id=product_id)
     try:
